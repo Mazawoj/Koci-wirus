@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koci Ptoszek</title>
+    <style>
+        body {
+            background-color: #222;
+            color: #ffcc00;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            overflow: hidden;
+        }
+        #message {
+            padding: 30px;
+            border: 5px dashed #ffcc00;
+            background-color: #333;
+            box-shadow: 0 0 30px #ffcc00;
+            opacity: 0;
+            transition: opacity 1s ease-in-out, transform 0.5s;
+            transform: rotate(-5deg);
+        }
+        #message.visible {
+            opacity: 1;
+            transform: rotate(0deg);
+        }
+        .shake {
+            animation: shake 0.5s infinite;
+        }
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+    </style>
+</head>
+<body>
+    <div id="message" class="shake">
+        <h1>ALERT! KOCI ATAK!</h1>
+        <p>Twój komputer jest opanowany przez stado kotów! Dane są drapane i mruczone... 🐱😼</p>
+        <p>Żartuję! To tylko kocia wersja pranka. Koty są słodkie, ale pamiętaj o bezpieczeństwie online!</p>
+        <p>Oto super kot na pocieszenie:</p>
+        <pre>
+ /\\_/\
+( o.o )
+ > ^ <
+        </pre>
+    </div>
+
+    <script>
+        // Pokazujemy wiadomość z efektem
+        setTimeout(() => {
+            document.getElementById('message').classList.add('visible');
+            
+            // Symulujemy pobieranie plików z kotami (harmless)
+            for (let i = 1; i <= 4; i++) {
+                setTimeout(() => {
+                    const link = document.createElement('a');
+                    link.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(`To jest nieszkodliwy plik z kotem ${i}. Miauu! 🐱`);
+                    link.download = `kot${i}.txt`;
+                    link.style.display = 'none';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                }, i * 400);
+            }
+            
+            // Seria alertów z kocią tematyką
+            setTimeout(() => alert('Kot wykryty!'), 800);
+            setTimeout(() => alert('Drapanie plików...'), 1600);
+            setTimeout(() => alert('Mruczenie systemu...'), 2400);
+            setTimeout(() => alert('Żart! Wszystko w porządku. 😹'), 3200);
+            
+            // Próba pełnego ekranu
+            document.documentElement.requestFullscreen();
+            
+            // Dodatkowy efekt: zmieniający się kolor tła
+            let hue = 0;
+            setInterval(() => {
+                hue = (hue + 1) % 360;
+                document.body.style.backgroundColor = `hsl(${hue}, 50%, 20%)`;
+            }, 100);
+        }, 500);
+    </script>
+</body>
+</html>
